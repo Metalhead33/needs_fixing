@@ -15,7 +15,7 @@ private:
     bool cleric_magic;
     bool druid_magic;
     bool can_use[s_special];
-    bool can_wear[heavy_armour];
+    bool can_wear[s_heavy_armour];
     attrib requirement;
 public:
     char_class(string set_name, bool setmagic1, bool setmagic2, bool setmagic3, int setr_atr_str, int setr_atr_int, int setr_atr_wlp, int setr_atr_agl, int setr_atr_dxt, int setr_atr_chr, bool can_use_crude, bool can_use_bow, bool can_use_crossbow, bool can_use_short_blade, bool can_use_long_blade, bool can_use_axe, bool can_use_halberd, bool can_use_hammer, bool can_use_spear, bool can_use_special , bool can_wear_t_none, bool can_wear_cloth, bool can_wear_light_armour, bool can_wear_medium_armour, bool can_wear_heavy_armour)
@@ -40,11 +40,10 @@ public:
         can_use[s_hammer] = can_use_hammer;
         can_use[s_spear] = can_use_spear;
         can_use[s_special] = can_use_special;
-        can_wear[t_none] = can_wear_t_none;
-        can_wear[cloth] = can_wear_cloth;
-        can_wear[light_armour] = can_wear_light_armour;
-        can_wear[medium_armour] = can_wear_medium_armour;
-        can_wear[heavy_armour] = can_wear_heavy_armour;
+        can_wear[s_cloth] = can_wear_cloth;
+        can_wear[s_light_armour] = can_wear_light_armour;
+        can_wear[s_medium_armour] = can_wear_medium_armour;
+        can_wear[s_heavy_armour] = can_wear_heavy_armour;
     };
     char_class()
     {
@@ -99,11 +98,10 @@ public:
 	void set_can_hammer(bool can_use_hammer) { can_use[s_hammer] = can_use_hammer; }
 	void set_can_spear(bool can_use_spear) { can_use[s_spear] = can_use_spear; }
 	void set_can_special(bool can_use_special) { can_use[s_special] = can_use_special; }
-	void set_can_t_none(bool can_wear_t_none) { can_wear[t_none] = can_wear_t_none; }
-	void set_can_cloth(bool can_wear_cloth) { can_wear[cloth] = can_wear_cloth; }
-	void set_can_light_armour(bool can_wear_light_armour) { can_wear[light_armour] = can_wear_light_armour; }
-	void set_can_medium_armour(bool can_wear_medium_armour) { can_wear[medium_armour] = can_wear_medium_armour; }
-	void set_can_heavy_armour(bool can_wear_heavy_armour) { can_wear[heavy_armour] = can_wear_heavy_armour; }
+	void set_can_cloth(bool can_wear_cloth) { can_wear[s_cloth] = can_wear_cloth; }
+	void set_can_light_armour(bool can_wear_light_armour) { can_wear[s_light_armour] = can_wear_light_armour; }
+	void set_can_medium_armour(bool can_wear_medium_armour) { can_wear[s_medium_armour] = can_wear_medium_armour; }
+	void set_can_heavy_armour(bool can_wear_heavy_armour) { can_wear[s_heavy_armour] = can_wear_heavy_armour; }
     string get_c_display_name() { return c_display_name; }
     bool get_arcane_magic() { return arcane_magic; }
     bool get_cleric_magic() { return cleric_magic; }
@@ -124,11 +122,10 @@ public:
     bool get_can_hammer() { return can_use[s_hammer]; }
     bool get_can_spear() { return can_use[s_spear]; }
     bool get_can_special() { return can_use[s_special]; }
-    bool get_can_t_none() { return can_wear[t_none]; }
-    bool get_can_cloth() { return can_wear[cloth]; }
-    bool get_can_light_armour() { return can_wear[light_armour]; }
-    bool get_can_medium_armour() { return can_wear[medium_armour]; }
-    bool get_can_heavy_armour() { return can_wear[heavy_armour]; }
+    bool get_can_cloth() { return can_wear[s_cloth]; }
+    bool get_can_light_armour() { return can_wear[s_light_armour]; }
+    bool get_can_medium_armour() { return can_wear[s_medium_armour]; }
+    bool get_can_heavy_armour() { return can_wear[s_heavy_armour]; }
 };
 char_class c_dummy("None", false,  false,  false, 0, 0, 0, 0, 0, 0,  true,  true,  true,  true,  false,  true,  false,  false,  true,  false,  true,  true,  true,  false,  false);
 char_class c_warrior("Warrior", false,  false,  false, 11, 0, 0, 9, 0, 0,  true,  true,  true,  true, true,  true, true, true,  true, true,  true,  true,  true, true, true);
@@ -146,7 +143,7 @@ private:
     bool cleric_magic;
     bool druid_magic;
     bool can_use[s_special];
-    bool can_wear[heavy_armour];
+    bool can_wear[s_heavy_armour];
 public:
     char_class *required_class1;
     char_class *required_class2;
@@ -169,11 +166,10 @@ public:
         can_use[s_hammer] = can_use_hammer;
         can_use[s_spear] = can_use_spear;
         can_use[s_special] = can_use_special;
-        can_wear[t_none] = can_wear_t_none;
-        can_wear[cloth] = can_wear_cloth;
-        can_wear[light_armour] = can_wear_light_armour;
-        can_wear[medium_armour] = can_wear_medium_armour;
-        can_wear[heavy_armour] = can_wear_heavy_armour;
+        can_wear[s_cloth] = can_wear_cloth;
+        can_wear[s_light_armour] = can_wear_light_armour;
+        can_wear[s_medium_armour] = can_wear_medium_armour;
+        can_wear[s_heavy_armour] = can_wear_heavy_armour;
     };
     prestige_class()
     {
@@ -221,11 +217,10 @@ public:
 	void set_can_hammer(bool can_use_hammer) { can_use[s_hammer] = can_use_hammer; }
 	void set_can_spear(bool can_use_spear) { can_use[s_spear] = can_use_spear; }
 	void set_can_special(bool can_use_special) { can_use[s_special] = can_use_special; }
-	void set_can_t_none(bool can_wear_t_none) { can_wear[t_none] = can_wear_t_none; }
-	void set_can_cloth(bool can_wear_cloth) { can_wear[cloth] = can_wear_cloth; }
-	void set_can_light_armour(bool can_wear_light_armour) { can_wear[light_armour] = can_wear_light_armour; }
-	void set_can_medium_armour(bool can_wear_medium_armour) { can_wear[medium_armour] = can_wear_medium_armour; }
-	void set_can_heavy_armour(bool can_wear_heavy_armour) { can_wear[heavy_armour] = can_wear_heavy_armour; }
+	void set_can_cloth(bool can_wear_cloth) { can_wear[s_cloth] = can_wear_cloth; }
+	void set_can_light_armour(bool can_wear_light_armour) { can_wear[s_light_armour] = can_wear_light_armour; }
+	void set_can_medium_armour(bool can_wear_medium_armour) { can_wear[s_medium_armour] = can_wear_medium_armour; }
+	void set_can_heavy_armour(bool can_wear_heavy_armour) { can_wear[s_heavy_armour] = can_wear_heavy_armour; }
     string get_pc_display_name() { return pc_display_name; }
     bool get_free_variaton() { return free_variation; }
     bool get_arcane_magic() { return arcane_magic; }
@@ -241,11 +236,10 @@ public:
     bool get_can_hammer() { return can_use[s_hammer]; }
     bool get_can_spear() { return can_use[s_spear]; }
     bool get_can_special() { return can_use[s_special]; }
-    bool get_can_t_none() { return can_wear[t_none]; }
-    bool get_can_cloth() { return can_wear[cloth]; }
-    bool get_can_light_armour() { return can_wear[light_armour]; }
-    bool get_can_medium_armour() { return can_wear[medium_armour]; }
-    bool get_can_heavy_armour() { return can_wear[heavy_armour]; }
+    bool get_can_cloth() { return can_wear[s_cloth]; }
+    bool get_can_light_armour() { return can_wear[s_light_armour]; }
+    bool get_can_medium_armour() { return can_wear[s_medium_armour]; }
+    bool get_can_heavy_armour() { return can_wear[s_heavy_armour]; }
 };
 prestige_class pc_dummy("None", &c_dummy, &c_dummy, true, false, false, false, true, true, true, true, false, true, false, false, true, false, true, true, true, false, false);
 prestige_class pc_knight("Knight", &c_warrior, &c_cleric, false, false, false, false, true, true, true, true, false, true, false, false, true, false, true, true, true, false, false);
