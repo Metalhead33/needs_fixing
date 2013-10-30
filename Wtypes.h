@@ -4,32 +4,79 @@
 #include <fstream>
 #include <cstdlib>
 #include <map>
+
+
 class w_type
 {private:
     string display_name;
+    string alias;
 public:
-    w_type(string setname)
+    w_type(string setname, string setalias)
     {
         display_name = setname;
-    }
+        alias = setalias;
+    };
     w_type()
     {
         string setname = "None";
-    }
+        string setalias = "dummy";
+    };
     static w_type GetNull()
     {
-        w_type *res = new w_type("None");
+        w_type *res = new w_type("None", "dummy");
         return *res;
      };
+     void setname(string setname) { display_name = setname; }
+     string GetName() { return display_name; }
+     void setalias(string setalias) { alias = setalias; }
+     string GetAlias() { return alias; }
 };
-w_type blunt("Blunt");
-w_type ranged("Ranged");
-w_type piercing("Piercing");
-w_type slashing("Slashing");
+w_type blunt("Blunt", "blunt");
+w_type ranged("Ranged", "ranged");
+w_type piercing("Piercing", "percing");
+w_type slashing("Slashing", "slashing");
 
-enum w_type2_setup
+class w_type2
 {
-    s_crude = 1,
+private:
+    string display_name;
+    string alias;
+public:
+    w_type2(string setname, string setalias)
+    {
+        display_name = setname;
+        alias = setalias;
+    };
+    w_type2()
+    {
+        string setname = "None";
+        string setalias = "dummy";
+    };
+    static w_type2 GetNull()
+    {
+        w_type2 *res = new w_type2("None", "dummy");
+        return *res;
+     };
+     void setname(string setname) { display_name = setname; }
+     string GetName() { return display_name; }
+     void setalias(string setalias) { alias = setalias; }
+     string GetAlias() { return alias; }
+};
+
+w_type2 crude("Crude", "crude");
+w_type2 bow("Bow", "bow");
+w_type2 crossbow("Crossbow", "xbow");
+w_type2 short_blade("Short Blade", "ssword");
+w_type2 long_blade("Long Blade", "lsword");
+w_type2 axe("Axe", "axe");
+w_type2 halberd("Battle Axe", "halberd");
+w_type2 hammer("Hammer", "hammer");
+w_type2 spear("Polearm", "polearm");
+w_type2 special("Special", "special");
+
+enum weapons_canuse
+{
+    s_crude = 0,
     s_bow,
     s_crossbow,
     s_short_blade,
@@ -41,90 +88,114 @@ enum w_type2_setup
     s_special
 };
 
-class w_type2
+class a_type
 {
 private:
     string display_name;
-    w_type2_setup alias;
+    string alias;
 public:
-    w_type2(string setname, w_type2_setup setalias)
+    a_type(string setname, string setalias)
     {
         display_name = setname;
         alias = setalias;
     };
-    w_type2()
+    a_type()
     {
         string setname = "None";
-        w_type2_setup setalias = s_crude;
+        string setalias = "dummy";
     };
-    static w_type2 GetNull()
+    static a_type GetNull()
     {
-        w_type2 *res = new w_type2("None", s_crude);
+        a_type *res = new a_type("None", "dummy");
         return *res;
      };
+     void setname(string setname) { display_name = setname; }
+     string GetName() { return display_name; }
+     void setalias(string setalias) { alias = setalias; }
+     string GetAlias() { return alias; }
 };
 
-w_type2 crude("Crude", s_crude);
-w_type2 bow("Bow", s_bow);
-w_type2 crossbow("Crossbow", s_crossbow);
-w_type2 short_blade("Short Blade", s_short_blade);
-w_type2 long_blade("Long Blade", s_long_blade);
-w_type2 axe("Axe", s_axe);
-w_type2 halberd("Battle Axe", s_halberd);
-w_type2 hammer("Hammer", s_hammer);
-w_type2 spear("Polearm", s_spear);
-w_type2 special("Special", s_special);
+a_type cloth("None", "clothing");
+a_type light_armour("Light Armour", "l_armour");
+a_type medium_armour("Medium Armour", "m_armour");
+a_type heavy_armour("Heavy Armour", "h_armour");
 
-enum a_type
+enum armour_canwear
 {
-    t_none = 1,
-    cloth,
-    light_armour,
-    medium_armour,
-    heavy_armour
+    s_cloth = 0,
+    s_light_armour,
+    s_medium_armour,
+    s_heavy_armour
 };
 
-enum element
+class element
 {
-    m_none,
-    m_fire,
-    m_water,
-    m_ice,
-    m_air,
-    m_thunder,
-    m_earth,
-    m_light,
-    m_dark
+private:
+    string display_name;
+    string alias;
+public:
+    element(string setname, string setalias)
+    {
+        display_name = setname;
+        alias = setalias;
+    };
+    element()
+    {
+        string setname = "Physical";
+        string setalias = "none";
+    };
+    static element GetNull()
+    {
+        element *res = new element("Physical", "none");
+        return *res;
+     };
+     void setname(string setname) { display_name = setname; }
+     string GetName() { return display_name; }
+     void setalias(string setalias) { alias = setalias; }
+     string GetAlias() { return alias; }
 };
 
-istream& operator>> ( istream& in, element& x )
-{
-int val;
-if ( in>> val ) {
-switch ( val ) {
-case m_none: case m_fire: case m_water: case m_ice: case m_air: case m_thunder: case m_earth: case m_light: case m_dark:
-x = element(val); break;}
-}};
+element m_none("Physical", "none");
+element m_fire("Igneous", "fire");
+element m_water("Aquatic", "water");
+element m_ice("Gelid", "ice");
+element m_air("Tempestuous", "air");
+element m_thunder("Thunderous", "thunder");
+element m_light("Luminous", "light");
+element m_dark("Caliginous", "dark");
 
 
-enum material
+class material
 {
-    a_none,
-    a_wood,
-    a_iron,
-    a_steel,
-    a_dwarven,
-    a_leather
+private:
+    string display_name;
+    string alias;
+public:
+    material(string setname, string setalias)
+    {
+        display_name = setname;
+        alias = setalias;
+    };
+    material()
+    {
+        string setname = "None";
+        string setalias = "none";
+    };
+    static material GetNull()
+    {
+        material *res = new material("None", "none");
+        return *res;
+     };
+     void setname(string setname) { display_name = setname; }
+     string GetName() { return display_name; }
+     void setalias(string setalias) { alias = setalias; }
+     string GetAlias() { return alias; }
 };
-
-istream& operator>> ( istream& in, material& x )
-{
-int val;
-if ( in>> val ) {
-switch ( val ) {
-case a_none: case a_wood: case a_steel: case a_dwarven: case a_leather:
-x = material(val); break;}
-}};
-
+material a_none("None", "none");
+material a_wood("Wooden", "wood");
+material a_iron("Iron", "iron");
+material a_steel("Steel", "steel");
+material a_dwarven("Dwarven", "dwarven");
+material a_leather("Leather", "leather");
 
 #endif
